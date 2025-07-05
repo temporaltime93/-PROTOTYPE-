@@ -9,9 +9,8 @@ Centralizar todos los scripts desarrollados para proyectos, pruebas y herramient
 ## 📁 Estructura del Repositorio
 
 ```bash
-roblox-scripts/
-├── loaders/        # Scripts que cargan otros scripts (autoexec, fetch remoto, etc)
-├── funciones/      # Funciones específicas o personalizadas para tareas comunes
-├── utils/          # Funciones auxiliares reutilizables (parseo, espera, logs, etc)
-├── modules/        # Módulos con lógica aislada (sistemas de hash, manejo de UI, sistemas de usuarios, etc)
-└── README.md       # Documentación del repositorio
+[LIBRERIA]/
+├── [CARGAS]/
+├── [FUNCIONES]/
+├── [UTILIDADES]/
+└── [MODULOS]/ 
