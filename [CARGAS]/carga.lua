@@ -71,7 +71,7 @@ task.spawn(function()
                 textoAnimado.Text = string.sub(frase, 1, i)
                 task.wait(0.07)
             end
-            task.wait(0.8)
+            task.wait(0.6)
             -- ? Borrado tipo máquina
             for i = #frase, 1, -1 do
                 textoAnimado.Text = string.sub(frase, 1, i)
