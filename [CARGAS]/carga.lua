@@ -35,12 +35,6 @@ discordBtn.BackgroundColor3 = Color3.fromRGB(0, 255, 4)
 discordBtn.TextColor3 = Color3.new(0, 0, 0)
 discordBtn.Parent = fondo
 
-discordBtn.MouseButton1Click:Connect(function()
-    setclipboard(DISCORD)
-    discordBtn.Text = "¡Copiado!"
-    task.wait(1.5)
-    discordBtn.Text = "Ir a Discord"
-end)
 
 -- Contenedor y barra de progreso
 local barraContenedor = Instance.new("Frame")
@@ -63,7 +57,12 @@ local frases = {
     "PARA TODOS",
     "discord.gg/ammCKeyNcX"
 }
-
+discordBtn.MouseButton1Click:Connect(function()
+    setclipboard(DISCORD)
+    discordBtn.Text = "¡Copiado!"
+    task.wait(1.5)
+    discordBtn.Text = "Ir a Discord"
+end)
 -- * Máquina de escribir animada
 task.spawn(function()
     while gui and gui.Parent do
