@@ -1,3 +1,5 @@
+local DISCORD = "https://discord.gg/ammCKeyNcX"
+
 local player = game.Players.LocalPlayer
 local gui = Instance.new("ScreenGui")
 gui.Name = "PantallaCarga"
@@ -58,7 +60,8 @@ barraProgreso.Parent = barraContenedor
 local frases = {
     "TEAM PROTOTYPE",
     "TECNOLOGÍA",
-    "PARA TODOS"
+    "PARA TODOS",
+    "discord.gg/ammCKeyNcX"
 }
 
 -- * Máquina de escribir animada
