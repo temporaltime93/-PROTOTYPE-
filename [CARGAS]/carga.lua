@@ -84,7 +84,7 @@ end)
 
 -- * Progresión de barra con tiempo
 task.spawn(function()
-    local duracion = 9
+    local duracion = 11
     local pasos = 100
     for i = 1, pasos do
         barraProgreso.Size = UDim2.new(i / pasos, 0, 1, 0)
