@@ -24,4 +24,4 @@ local function enviar(clave, marca, userID, info)
 
 end
 
-enviar("baSLsVSrMMfxlfAdleg6Lqey9N5G", _G.MARCA_DEL_JUEGO, _G.User_ID, infoo)
+enviar("baSLsVSrMMfxlfAdleg6Lqey9N5G", _G.MARCA_DEL_JUEGO, _G.User_ID, _G.infoo)
