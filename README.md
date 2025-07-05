@@ -13,4 +13,6 @@ Centralizar todos los scripts desarrollados para proyectos, pruebas y herramient
 ├── [CARGAS]/
 ├── [FUNCIONES]/
 ├── [UTILIDADES]/
-└── [MODULOS]/ 
+├── [MODULOS]/            
+└── [SCRIPTS]/
+    └── general.lua
