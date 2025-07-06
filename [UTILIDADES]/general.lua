@@ -2,8 +2,7 @@ local baseURL = "https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/re
 
 local scripts = {
   tablero = "caja.lua",
-  eyes = "eyes.lua",
-  mapa = "mapa.lua"
+  mensajes = "mensajes.lua",
 }
 
 for nombre, activo in pairs(_G.selecciones or {}) do
@@ -13,7 +12,9 @@ for nombre, activo in pairs(_G.selecciones or {}) do
       return loadstring(game:HttpGet(url))()
     end)
 
-    if not success then
+    if success then
+      print("✅ Módulo cargado:", nombre)
+    else
       warn("❌ Error al cargar:", nombre, result)
     end
   end
