@@ -1,5 +1,3 @@
--- mensajes.lua (archivo remoto)
-
 local M = {}
 
 function M.log(tipo, mensaje)
@@ -15,5 +13,8 @@ function M.log(tipo, mensaje)
 		print("🔘 [LOG] " .. mensaje)
 	end
 end
+
+-- ? Registrar global para uso inmediato
+_G.log = M.log
 
 return M
