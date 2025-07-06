@@ -1,17 +1,3 @@
--->╭───────────────────────────╮
--->│       🛠 VARIBLES 🛠      │
--->╰───────────────────────────╯
-
-local User_Discord_ID = ""
-
----╭───────────────────────────╮
----│       🛠 LOCALES 🛠       │
----╰───────────────────────────╯
-
-_G.User_ID = User_Discord_ID
-
-
-
 
 --+╭───────────────────────────╮
 --+│       🛠 GUI PING 🛠       │
@@ -28,12 +14,12 @@ screenGui.IgnoreGuiInset = true
 screenGui.Parent = player:WaitForChild("PlayerGui")
 
 --// Frame principal
-local Frame = Instance.new("Frame")
-Frame.Name = "PING"
-Frame.BackgroundTransparency = 1
-Frame.Position = UDim2.new(0.29, 0, 0.28, 0)
-Frame.Size = UDim2.new(0, 533, 0, 396)
-Frame.Parent = screenGui
+local PING = Instance.new("Frame")
+PING.Name = "PING"
+PING.BackgroundTransparency = 1
+PING.Position = UDim2.new(0.29, 0, 0.28, 0)
+PING.Size = UDim2.new(0, 533, 0, 396)
+PING.Parent = screenGui
 
 --// Imagen de fondo (drag area)
 local ImageLabel = Instance.new("ImageLabel")
@@ -41,7 +27,7 @@ ImageLabel.Name = "Fondo"
 ImageLabel.Image = "rbxassetid://137312536782274"
 ImageLabel.BackgroundTransparency = 1
 ImageLabel.Size = UDim2.new(1, 0, 1, 0)
-ImageLabel.Parent = Frame
+ImageLabel.Parent = PING
 
 --// TextBox
 local TextBox = Instance.new("TextBox")
@@ -54,7 +40,7 @@ TextBox.BackgroundTransparency = 1
 TextBox.Position = UDim2.new(0.11, 0, 0.51, 0)
 TextBox.Size = UDim2.new(0, 420, 0, 63)
 TextBox.ClearTextOnFocus = false
-TextBox.Parent = Frame
+TextBox.Parent = PING
 
 --// Botón
 local BTN_ping = Instance.new("TextButton")
@@ -68,7 +54,7 @@ BTN_ping.Transparency = 1
 BTN_ping.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
 BTN_ping.Position = UDim2.new(0.47, 0, 0.82, 0)
 BTN_ping.Size = UDim2.new(0, 280, 0, 70)
-BTN_ping.Parent = Frame
+BTN_ping.Parent = PING
 
 
 -->╭───────────────────────────╮
@@ -82,7 +68,7 @@ local startPos
 
 local function updateDrag(input)
 	local delta = input.Position - dragStart
-	Frame.Position = UDim2.new(
+	PING.Position = UDim2.new(
 		startPos.X.Scale,
 		startPos.X.Offset + delta.X,
 		startPos.Y.Scale,
@@ -94,7 +80,7 @@ ImageLabel.InputBegan:Connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 		dragging = true
 		dragStart = input.Position
-		startPos = Frame.Position
+		startPos = PING.Position
 		
 		input.Changed:Connect(function()
 			if input.UserInputState == Enum.UserInputState.End then
@@ -124,8 +110,8 @@ BTN_ping.MouseButton1Click:Connect(function()
 
 	-- ? Verifica que solo haya números y tenga más de 5 dígitos
 	if texto:match("^%d+$") and #texto > 5 then
-		User_Discord_ID = texto
-		Frame.Visible = false -- * Solo se oculta si cumple con la condición
+		_G.User_ID = texto
+		PING.Visible = false -- * Solo se oculta si cumple con la condición
 	else
 		warn("❌ pon tu verdadera ID" )
 	end
