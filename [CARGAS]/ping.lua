@@ -47,7 +47,7 @@ ImageLabel.Parent = Frame
 local TextBox = Instance.new("TextBox")
 TextBox.Name = "InputBox"
 TextBox.Font = Enum.Font.Roboto
-TextBox.Text = "555555"
+TextBox.Text = ""
 TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextBox.TextSize = 40
 TextBox.BackgroundTransparency = 1
@@ -119,8 +119,15 @@ end)
 -->╭───────────────────────────╮
 -->│          🛠 BTN 🛠        │
 -->╰───────────────────────────╯
+if TextBox.Text == "" then
+    BTN_ping.MouseButton1Click:Connect(function()
+    	User_Discord_ID = TextBox.Text
+    	Frame.Visible = false
+    end)
+else
+    BTN_ping.MouseButton1Click:Connect(function()
+    	User_Discord_ID = TextBox.Text
+    	Frame.Visible = false
+    end)
+end
 
-BTN_ping.MouseButton1Click:Connect(function()
-	User_Discord_ID = TextBox.Text
-	Frame.Visible = false
-end)
