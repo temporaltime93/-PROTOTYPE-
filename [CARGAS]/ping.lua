@@ -1,10 +1,42 @@
 
+--~ ╭────────────────────────────────────────────────────
+--~ │ 🌟      ¡HOLIII~! COMO ESTAS SOY RUBI~ 💖           
+--~ │        Representando a: TEAM PROTOTYPE 🛠️👾         
+--~ │────────────────────────────────────────────────────
+--~ │ 🎯 ¿Necesitas ayuda tecnológica? ¡Aquí estamos~!    
+--~ │                                                    
+--~ │ 💼 Servicios Premium que ofrecemos:                
+--~ │                                                    
+--~ │ 🤖  AUTOMATIZACIÓN: Bots, sistemas y tareas smart~ 
+--~ │ 🧪  CREACIÓN: Ideas únicas hechas realidad 💡       
+--~ │ 🔧  SCRIPTS: Personalizados, rápidos y seguros 🛡️   
+--~ │ 🌀  CLONACIÓN: Entornos, sistemas, lógicas 🔍       
+--~ │                                                    
+--~ │ 💬 ¡Conversemos! Rubi y el team están atentos~ 💻   
+--~ │ 🏡  DISCORD: https://discord.gg/ammCKeyNcX         
+--~ │ 🌐  WEB:     https://arceus.online                 
+--~ ╰────────────────────────────────────────────────────
+
 --+╭───────────────────────────╮
 --+│       🛠 GUI PING 🛠       │
 --+╰───────────────────────────╯
+--[[
+Descripción general:
+Este script crea una interfaz gráfica de usuario (GUI) para realizar un "ping" a un jugador en Roblox.
+La GUI incluye un cuadro de texto para ingresar el ID del jugador y un botón para realizar el ping.
+También hay una imagen de fondo que se puede arrastrar para mover la GUI.
+--]]
+
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local player = Players.LocalPlayer
+
+-->╭───────────────────────────╮
+-->│         🛠 GUI 🛠          │
+-->╰───────────────────────────╯
+--[[
+Esta sección crea la GUI principal y establece sus propiedades visuales básicas.
+--]]
 
 --// Crear GUI
 local screenGui = Instance.new("ScreenGui")
@@ -21,6 +53,13 @@ PING.Position = UDim2.new(0.29, 0, 0.28, 0)
 PING.Size = UDim2.new(0, 533, 0, 396)
 PING.Parent = screenGui
 
+-->╭───────────────────────────╮
+-->│        🖼️ Fondo 🖼️       │
+-->╰───────────────────────────╯
+--[[
+Esta sección crea la imagen de fondo que también sirve como área de arrastre para mover la GUI.
+--]]
+
 --// Imagen de fondo (drag area)
 local ImageLabel = Instance.new("ImageLabel")
 ImageLabel.Name = "Fondo"
@@ -28,6 +67,13 @@ ImageLabel.Image = "rbxassetid://137312536782274"
 ImageLabel.BackgroundTransparency = 1
 ImageLabel.Size = UDim2.new(1, 0, 1, 0)
 ImageLabel.Parent = PING
+
+-->╭───────────────────────────╮
+-->│         📝 TextBox 📝      │
+-->╰───────────────────────────╯
+--[[
+Esta sección crea el cuadro de texto para ingresar el ID del jugador.
+--]]
 
 --// TextBox
 local TextBox = Instance.new("TextBox")
@@ -41,6 +87,13 @@ TextBox.Position = UDim2.new(0.11, 0, 0.51, 0)
 TextBox.Size = UDim2.new(0, 420, 0, 63)
 TextBox.ClearTextOnFocus = false
 TextBox.Parent = PING
+
+-->╭───────────────────────────╮
+-->│         🔘 Botón 🔘       │
+-->╰───────────────────────────╯
+--[[
+Esta sección crea el botón para realizar el ping.
+--]]
 
 --// Botón
 local BTN_ping = Instance.new("TextButton")
@@ -56,10 +109,12 @@ BTN_ping.Position = UDim2.new(0.47, 0, 0.82, 0)
 BTN_ping.Size = UDim2.new(0, 280, 0, 70)
 BTN_ping.Parent = PING
 
-
 -->╭───────────────────────────╮
--->│         🛠 MOVER 🛠        │
+-->│         🖱️ Mover 🖱️      │
 -->╰───────────────────────────╯
+--[[
+Esta sección controla la funcionalidad de arrastre para mover la GUI.
+--]]
 
 local dragging = false
 local dragInput
@@ -103,16 +158,22 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 
 -->╭───────────────────────────╮
--->│          🛠 BTN 🛠        │
+-->│         🔘 Funcionalidad 🔘│
 -->╰───────────────────────────╯
+--[[
+Esta sección controla la funcionalidad del botón de ping.
+Verifica que el ID ingresado sea válido antes de realizar el ping.
+--]]
+
 BTN_ping.MouseButton1Click:Connect(function()
-	local texto = TextBox.Text:match("^%s*(.-)%s*$") -- ? Emina
+	local texto = TextBox.Text:match("^%s*(.-)%s*$") -- ? Elimina espacios al inicio y al final
 
 	-- ? Verifica que solo haya números y tenga más de 5 dígitos
 	if texto:match("^%d+$") and #texto > 5 then
 		_G.User_ID = texto
 		PING.Visible = false -- * Solo se oculta si cumple con la condición
 	else
-		warn("❌ pon tu verdadera ID" )
+		warn("❌ Ingresa una ID válida") -- ! Recomendación: Manejar errores de manera más amigable para el usuario
 	end
 end)
+
