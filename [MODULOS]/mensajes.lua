@@ -1,4 +1,4 @@
-local function log(modo, mensaje)
+function log(modo, mensaje)
 	if modo == "info" then
 		print("✅ [INFO] " .. mensaje)
 	elseif modo == "warn" then
