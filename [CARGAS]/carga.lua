@@ -114,7 +114,6 @@ task.spawn(function()
 end)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[MODULOS]/mensajes.lua"))()
 wait(11)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[UTILIDADES]/mensajes.lua"))()
 
 --~ ╭────────────────────────────────────────────────────
 --~ │ 🌟      ¡HOLIII~! COMO ESTAS SOY RUBI~ 💖           
