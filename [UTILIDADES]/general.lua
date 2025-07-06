@@ -1,4 +1,4 @@
-local baseURL = "https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/refs/heads/main/%5BUTILIDADES%5D"
+local baseURL = "https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/refs/heads/main/%5BUTILIDADES%5D/"
 
 local scripts = {
   tablero = "caja.lua",
