@@ -1,3 +1,4 @@
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[CARGAS]/carga.lua"))()
 ---> ╭────────────────────────────────────────────
 ---> │ NOMBRE DEL PROYECTO: Mensajes
 ---> │
