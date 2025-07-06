@@ -15,7 +15,7 @@
 
 --> MENSAJES 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[MODULOS]/mensajes.lua"))()
-
+_G.mensaje = { modo = "info", texto = "Hola mundo" }
 ---> 📋 Constantes y variables globales
 local DISCORD = "https://discord.gg/ammCKeyNcX"
 
