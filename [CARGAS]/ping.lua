@@ -119,7 +119,7 @@ end)
 -->╭───────────────────────────╮
 -->│          🛠 BTN 🛠        │
 -->╰───────────────────────────╯
-if TextBox.Text == "" then
+if TextBox.Text == "" or TextBox.Text == " "  then
     BTN_ping.MouseButton1Click:Connect(function()
     	User_Discord_ID = TextBox.Text
     end)
