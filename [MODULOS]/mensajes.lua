@@ -1,13 +1,14 @@
+-- MODULO: mensajes.lua
 local M = {}
 
-function M.log(modo, mensaje)
-	if modo == "info" then
+function M.log(tipo, mensaje)
+	if tipo == "info" then
 		print("✅ [INFO] " .. mensaje)
-	elseif modo == "warn" then
+	elseif tipo == "warn" then
 		warn("⚠️ [ADVERTENCIA] " .. mensaje)
-	elseif modo == "error" then
+	elseif tipo == "error" then
 		error("❌ [ERROR] " .. mensaje)
-	elseif modo == "help" then
+	elseif tipo == "help" then
 		print("🔷 [AYUDA] " .. mensaje)
 	else
 		print("🔘 [LOG] " .. mensaje)
