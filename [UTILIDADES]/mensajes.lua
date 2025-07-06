@@ -5,7 +5,7 @@ local function log(modo, mensaje)
 	elseif modo == "warn" then
 		warn("⚠️ [ADVERTENCIA] " .. mensaje)
 	elseif modo == "error" then
-		error("❌ [ERROR] " .. mensaje)
+    	warn("❌ [ERROR] " .. mensaje)
 	elseif modo == "help" then
 		print("🔷 [AYUDA] " .. mensaje)
 	else
