@@ -1,3 +1,4 @@
+-- general.lua
 local baseURL = "https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/refs/heads/main/%5BUTILIDADES%5D/"
 
 local scripts = {
@@ -8,14 +9,16 @@ local scripts = {
 for nombre, activo in pairs(_G.selecciones or {}) do
 	if activo and scripts[nombre] then
 		local url = baseURL .. scripts[nombre]
+
 		local success, result = pcall(function()
+			-- ? Se ejecuta sin importar si ya lo habías cargado
 			return loadstring(game:HttpGet(url))()
 		end)
 
 		if success then
-			print("✅ Módulo cargado:", nombre)
+			print("✅ Módulo ejecutado:", nombre)
 		else
-			warn("❌ Error al cargar:", nombre, result)
+			warn("❌ Error al ejecutar:", nombre, result)
 		end
 	end
 end
