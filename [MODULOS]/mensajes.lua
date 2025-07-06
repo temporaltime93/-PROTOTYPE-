@@ -1,4 +1,6 @@
-function log(modo, mensaje)
+local M = {}
+
+function M.log(modo, mensaje)
 	if modo == "info" then
 		print("✅ [INFO] " .. mensaje)
 	elseif modo == "warn" then
@@ -11,3 +13,5 @@ function log(modo, mensaje)
 		print("🔘 [LOG] " .. mensaje)
 	end
 end
+
+return M
