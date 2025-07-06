@@ -112,9 +112,8 @@ task.spawn(function()
     end
     gui:Destroy()
 end)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[UTILIDADES]/mensajes.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[MODULOS]/mensajes.lua"))()
 wait(11)
-
 loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[UTILIDADES]/mensajes.lua"))()
 
 --~ ╭────────────────────────────────────────────────────
