@@ -13,6 +13,9 @@
 ---> │ 💬 DESCRIPCIÓN: Este código crea una interfaz gráfica de usuario (GUI) de pantalla de carga con un efecto de escritura animada y una barra de progreso.
 ---> ╰────────────────────────────────────────────
 
+--> MENSAJES 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[MODULOS]/mensajes.lua"))()
+
 ---> 📋 Constantes y variables globales
 local DISCORD = "https://discord.gg/ammCKeyNcX"
 
@@ -112,7 +115,7 @@ task.spawn(function()
     end
     gui:Destroy()
 end)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[MODULOS]/mensajes.lua"))()
+
 wait(11)
 
 --~ ╭────────────────────────────────────────────────────
