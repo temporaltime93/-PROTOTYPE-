@@ -119,14 +119,15 @@ end)
 -->╭───────────────────────────╮
 -->│          🛠 BTN 🛠        │
 -->╰───────────────────────────╯
-if TextBox.Text == "" or TextBox.Text == " "  then
-    BTN_ping.MouseButton1Click:Connect(function()
-    	User_Discord_ID = TextBox.Text
-    end)
-else
-    BTN_ping.MouseButton1Click:Connect(function()
-    	User_Discord_ID = TextBox.Text
-    	Frame.Visible = false
-    end)
-end
+BTN_ping.MouseButton1Click:Connect(function()
+	local texto = TextBox.Text:match("^%s*(.-)%s*$") -- ? Elimina espacios al inicio y final
+
+	if texto == "" then
+		warn("❌ El campo está vacío o solo tiene espacios")
+		return
+	end
+
+	User_Discord_ID = texto
+	Frame.Visible = false
+end)
 
