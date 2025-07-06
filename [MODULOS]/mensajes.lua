@@ -1,4 +1,5 @@
--- MODULO: mensajes.lua
+-- mensajes.lua (archivo remoto)
+
 local M = {}
 
 function M.log(tipo, mensaje)
