@@ -1,4 +1,4 @@
--- * Sistema de logging elegante y semántico
+-- * Sistema de logging mejorado
 local function log(modo, mensaje)
 	if modo == "info" then
 		print("✅ [INFO] " .. mensaje)
@@ -13,18 +13,23 @@ local function log(modo, mensaje)
 	end
 end
 
--- * Variable para evitar mensajes repetidos
-local ultimoTexto = nil
+-- * Guardamos el último mensaje para evitar repeticiones
+local ultimoTexto = ""
 
--- * Bucle que escucha actualizaciones en _G.mensaje
-while true do
-	wait(0.5)
+-- * Listener principal
+task.spawn(function()
+	while true do
+		task.wait(0.5)
 
-	local paquete = _G.mensaje
+		-- ? Verificamos si hay un mensaje en _G
+		if _G.mensaje and type(_G.mensaje) == "table" then
+			local texto = _G.mensaje.texto
+			local modo = _G.mensaje.modo or "info"
 
-	if paquete and type(paquete) == "table" and paquete.texto ~= ultimoTexto then
-		local modo = paquete.modo or "info"
-		log(modo, paquete.texto)
-		ultimoTexto = paquete.texto
+			if texto and texto ~= ultimoTexto then
+				log(modo, texto)
+				ultimoTexto = texto
+			end
+		end
 	end
-end
+end)
