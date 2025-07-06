@@ -122,7 +122,6 @@ end)
 if TextBox.Text == "" then
     BTN_ping.MouseButton1Click:Connect(function()
     	User_Discord_ID = TextBox.Text
-    	Frame.Visible = false
     end)
 else
     BTN_ping.MouseButton1Click:Connect(function()
