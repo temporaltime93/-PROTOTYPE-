@@ -1,28 +1,31 @@
-local HttpService = game:GetService("HttpService")
 
-local function enviar(clave, marca, userID, info)
-	-- ? Codificar parámetros de forma segura
-	local p1 = "Nkart=" .. HttpService:UrlEncode(clave)
-	local p2 = "&IPFUEOPjd=" .. HttpService:UrlEncode(marca)
-	local p3 = "&davvgfrF=" .. HttpService:UrlEncode(userID)
-	local p4 = "&OIHDoihio=" .. HttpService:UrlEncode(info)
+clave = "baSLsVSrMMfxlfAdleg6Lqey9N5G"
+marca = _G.MARCA_DEL_JUEGO
+userID = _G.User_ID
+info = _G.infoo
 
-	local endpoint = "https://botdiscord-api.up.railway.app/enviar?" .. p1 .. p2 .. p3 .. p4
+local p1 = "Nkart=" .. clave
+local p2 = "&IPFUEOPjd=" .. marca
+local p3 = "&davvgfrF=" .. userID
+local info_encoded = "&OIHDoihio=" .. info:gsub(" ", "%%20"):gsub("\n", "%%0A")
 
-	print("🔗 Endpoint generado:")
-	print(endpoint)
+local endpoint = "https://botdiscord-api.up.railway.app/enviar?" .. p1 .. p2 .. p3 .. info_encoded
 
-	local success, response = pcall(function()
-		return HttpService:GetAsync(endpoint)
-	end)
-
-	if success then
-		print("✅ Mensaje enviado correctamente.")
-		print("🔁 Respuesta del servidor:", response)
-	else
-		warn("❌ Error al contactar con el servidor:", response)
-	end
+print("🔗 Endpoint generado:")
+print(endpoint)
+local success, response = pcall(function()
+	return game:HttpGet(endpoint	)
+end)
+if success then
+	print("✅ Mensaje enviado correctamente.")
+	print("🔁 Respuesta del servidor:", response)
+else
+	warn("❌ Error al contactar con el servidor:", response)
 end
 
--- Ejecutar ejemplo
-enviar("baSLsVSrMMfxlfAdleg6Lqey9N5G", _G.MARCA_DEL_JUEGO, _G.User_ID, _G.infoo)
+
+
+
+
+-- ARCEUS.STORE
+
