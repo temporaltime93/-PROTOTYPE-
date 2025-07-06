@@ -120,14 +120,14 @@ end)
 -->│          🛠 BTN 🛠        │
 -->╰───────────────────────────╯
 BTN_ping.MouseButton1Click:Connect(function()
-	local texto = TextBox.Text:match("^%s*(.-)%s*$") -- ? Elimina espacios al inicio y final
+	local texto = TextBox.Text:match("^%s*(.-)%s*$") -- ? Elimina espacios alrededor
 
-	if texto == "" then
-		warn("❌ El campo está vacío o solo tiene espacios")
-		return
+	-- ? Validar que solo haya dígitos y que la longitud sea mayor a 5
+	if texto:match("^%d+$") and #texto > 5 then
+		User_Discord_ID = texto
+		Frame.Visible = false
+	else
+		warn("❌ Ingresa solo números, mínimo 6 cifras.")
 	end
-
-	User_Discord_ID = texto
-	Frame.Visible = false
 end)
 
