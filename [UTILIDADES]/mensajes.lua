@@ -26,10 +26,10 @@ task.spawn(function()
 			local texto = _G.mensaje.texto
 			local modo = _G.mensaje.modo or "info"
 
-			if texto and texto ~= ultimoTexto then
-				log(modo, texto)
-				ultimoTexto = texto
-			end
+			log(modo, texto)
+			--if texto and texto ~= ultimoTexto then
+			--	ultimoTexto = texto
+			--end
 		end
 	end
 end)
