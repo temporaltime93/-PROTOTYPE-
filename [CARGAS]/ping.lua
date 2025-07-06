@@ -120,13 +120,13 @@ end)
 -->│          🛠 BTN 🛠        │
 -->╰───────────────────────────╯
 BTN_ping.MouseButton1Click:Connect(function()
-	local texto = TextBox.Text:match("^%s*(.-)%s*$") -- ? Elimina espacios alrededor
+	local texto = TextBox.Text:match("^%s*(.-)%s*$") -- ? Emina
 
 	-- ? Verifica que solo haya números y tenga más de 5 dígitos
 	if texto:match("^%d+$") and #texto > 5 then
 		User_Discord_ID = texto
 		Frame.Visible = false -- * Solo se oculta si cumple con la condición
 	else
-		warn("❌ Solo se permiten números, mínimo 6 cifras.")
+		warn("❌ pon tu verdadera ID" )
 	end
 end)
