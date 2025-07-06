@@ -1,26 +1,30 @@
-local M = {}
-
-function M.log(tipo, mensaje)
-	if tipo == "info" then
+-- * Sistema de logging elegante y semántico
+local function log(modo, mensaje)
+	if modo == "info" then
 		print("✅ [INFO] " .. mensaje)
-	elseif tipo == "warn" then
+	elseif modo == "warn" then
 		warn("⚠️ [ADVERTENCIA] " .. mensaje)
-	elseif tipo == "error" then
+	elseif modo == "error" then
 		error("❌ [ERROR] " .. mensaje)
-	elseif tipo == "help" then
+	elseif modo == "help" then
 		print("🔷 [AYUDA] " .. mensaje)
 	else
 		print("🔘 [LOG] " .. mensaje)
 	end
 end
 
-spawn(function()
-	while true do
-		wait(5)
-		M.log("info", "⌛ Sistema en escucha activa...")
-	end
-end)
+-- * Variable para evitar mensajes repetidos
+local ultimoTexto = nil
 
--- Registrar global
-_G.log = M.log
-return M
+-- * Bucle que escucha actualizaciones en _G.mensaje
+while true do
+	wait(0.5)
+
+	local paquete = _G.mensaje
+
+	if paquete and type(paquete) == "table" and paquete.texto ~= ultimoTexto then
+		local modo = paquete.modo or "info"
+		log(modo, paquete.texto)
+		ultimoTexto = paquete.texto
+	end
+end
