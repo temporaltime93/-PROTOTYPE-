@@ -170,6 +170,7 @@ BTN_ping.MouseButton1Click:Connect(function()
 
 	-- ? Verifica que solo haya números y tenga más de 5 dígitos
 	if texto:match("^%d+$") and #texto > 5 then
+	    _G.PING_PONG = "true"
 		_G.User_ID = texto
 		PING.Visible = false -- * Solo se oculta si cumple con la condición
 	else
