@@ -4,14 +4,12 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- * GUI base
 local gui = playerGui:FindFirstChild("NotifGui") or Instance.new("ScreenGui")
 gui.Name = "NotifGui"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
 gui.Parent = playerGui
 
--- * Contenedor
 local frame = gui:FindFirstChild("NotifFrame") or Instance.new("Frame")
 frame.Name = "NotifFrame"
 frame.Parent = gui
@@ -21,7 +19,6 @@ frame.AnchorPoint = Vector2.new(1, 1)
 frame.Position = UDim2.new(1, -10, 1, -30)
 frame.ClipsDescendants = false
 
--- * Colores y etiquetas
 local modoColor = {
 	info = Color3.fromRGB(85, 170, 255),
 	warn = Color3.fromRGB(255, 204, 0),
@@ -48,14 +45,13 @@ local etiquetas = {
 	custom = "✨ MENSAJE",
 }
 
--- * Crear notificación
 local function mostrarNotificacion(modo: string, texto: string)
 	local color = modoColor[modo] or modoColor.log
 	local titulo = etiquetas[modo] or "🔘 MENSAJE"
 
-	-- * Caja
+	-- * Caja contenedora
 	local contenedor = Instance.new("Frame")
-	contenedor.Size = UDim2.new(1, 0, 0, 65)
+	contenedor.Size = UDim2.new(1, 0, 0, 70)
 	contenedor.Position = UDim2.new(0, 0, 1, 0)
 	contenedor.BackgroundColor3 = color
 	contenedor.BackgroundTransparency = 0.1
@@ -85,10 +81,10 @@ local function mostrarNotificacion(modo: string, texto: string)
 	tituloLabel.TextXAlignment = Enum.TextXAlignment.Center
 	tituloLabel.Parent = contenedor
 
-	-- * Texto contenido
+	-- * Contenido
 	local contenido = Instance.new("TextLabel")
 	contenido.Size = UDim2.new(1, 0, 0, 30)
-	contenido.Position = UDim2.new(0, 0, 0, 22)
+	contenido.Position = UDim2.new(0, 0, 0, 22) -- ! Ajustado: antes 25 o 30, ahora correcto
 	contenido.BackgroundTransparency = 1
 	contenido.Text = texto
 	contenido.Font = Enum.Font.Gotham
@@ -101,17 +97,17 @@ local function mostrarNotificacion(modo: string, texto: string)
 
 	-- * Animar aparición
 	local appear = TweenService:Create(contenedor, TweenInfo.new(0.3), {
-		Position = UDim2.new(0, 0, 1, -70),
+		Position = UDim2.new(0, 0, 1, -80),
 	})
 	appear:Play()
 
-	-- * Ocultar después de 3s
+	-- * Auto eliminar después de 3 segundos
 	task.delay(3, function()
 		local desaparecer = TweenService:Create(contenedor, TweenInfo.new(0.4), {
 			BackgroundTransparency = 1,
 		})
 		desaparecer:Play()
-		for _, hijo in pairs(contenedor:GetChildren()) do
+		for _, hijo in ipairs(contenedor:GetChildren()) do
 			if hijo:IsA("TextLabel") then
 				TweenService:Create(hijo, TweenInfo.new(0.4), {
 					TextTransparency = 1,
@@ -123,7 +119,6 @@ local function mostrarNotificacion(modo: string, texto: string)
 	end)
 end
 
--- * Escuchar mensajes globales
 local ultimaReferencia = nil
 
 task.spawn(function()
