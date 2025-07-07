@@ -59,7 +59,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	contenedor.AnchorPoint = Vector2.new(0, 1)
 	contenedor.ClipsDescendants = true
 	contenedor.Parent = frame
-	contenedor.ZIndex = 2
+	contenedor.ZIndex = 100
 
 	local corner = Instance.new("UICorner", contenedor)
 	corner.CornerRadius = UDim.new(0, 6)
@@ -78,7 +78,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	tituloLabel.Text = titulo
 	tituloLabel.Font = Enum.Font.GothamBold
 	tituloLabel.TextSize = 14
-	tituloLabel.ZIndex = 10
+	tituloLabel.ZIndex = 101
 	tituloLabel.TextColor3 = Color3.new(1, 1, 1)
 	tituloLabel.TextXAlignment = Enum.TextXAlignment.Center
 	tituloLabel.Parent = contenedor
@@ -92,7 +92,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	contenido.Font = Enum.Font.Gotham
 	contenido.TextSize = 13
 	contenido.TextWrapped = true
-	contenido.ZIndex = 10
+	contenido.ZIndex = 102
 	contenido.TextColor3 = Color3.new(1, 1, 1)
 	contenido.TextXAlignment = Enum.TextXAlignment.Left
 	contenido.TextYAlignment = Enum.TextYAlignment.Top
