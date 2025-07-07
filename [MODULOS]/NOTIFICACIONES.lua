@@ -77,6 +77,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	tituloLabel.Text = titulo
 	tituloLabel.Font = Enum.Font.GothamBold
 	tituloLabel.TextSize = 14
+	tituloLabel.ZIndex = 10
 	tituloLabel.TextColor3 = Color3.new(1, 1, 1)
 	tituloLabel.TextXAlignment = Enum.TextXAlignment.Center
 	tituloLabel.Parent = contenedor
@@ -89,6 +90,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	contenido.Text = texto
 	contenido.Font = Enum.Font.Gotham
 	contenido.TextSize = 13
+	contenido.ZIndex = 10
 	contenido.TextWrapped = true
 	contenido.TextColor3 = Color3.new(1, 1, 1)
 	contenido.TextXAlignment = Enum.TextXAlignment.Left
@@ -131,3 +133,8 @@ task.spawn(function()
 		end
 	end
 end)
+
+_G.mensaje = {
+	texto = "Bienvenido al sistema Rubi~",
+	modo = "info"
+}
