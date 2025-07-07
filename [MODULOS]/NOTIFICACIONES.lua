@@ -86,7 +86,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	-- * Contenido debajo del título
 	local contenido = Instance.new("TextLabel")
 	contenido.Size = UDim2.new(1, 0, 0, 40)
-	contenido.Position = UDim2.new(0, 0, 0, 30) -- * Bajo el título
+	contenido.Position = UDim2.new(0, 0, 0, 40) -- * Bajo el título
 	contenido.BackgroundTransparency = 1
 	contenido.Text = texto
 	contenido.Font = Enum.Font.Gotham
