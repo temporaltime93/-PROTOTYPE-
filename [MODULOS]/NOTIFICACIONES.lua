@@ -39,7 +39,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	msg.TextColor3 = Color3.new(1, 1, 1)
 	msg.Font = Enum.Font.GothamBold
 	msg.TextSize = 14
-	msg.TextXAlignment = Enum.TextXAlignment.Left
+	msg.TextXAlignment = Enum.TextXAlignment.Center
 	msg.Parent = frame
 	msg.AnchorPoint = Vector2.new(0, 1)
 
