@@ -118,7 +118,8 @@ end)
  _G.mensaje = { texto = "LOADER..", modo = "success" }
 wait(3)
  _G.mensaje = { texto = "COMPLETO", modo = "success" }
-
+wait(7)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-HUBS-/main/PARTES/parte2.lua"))()
 
 --~ ╭────────────────────────────────────────────────────
 --~ │ 🌟      ¡HOLIII~! COMO ESTAS SOY RUBI~ 💖           
