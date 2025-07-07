@@ -74,7 +74,7 @@ local frases = {
     "TEAM PROTOTYPE",
     "TECNOLOGÍA",
     "PARA TODOS",
-    "discord.gg/ammCKeyNcX"
+    "discord.gg/2qcRceCmtC"
 }
 
 ---> 🖱️ Función para copiar enlace de Discord al portapapeles
