@@ -91,7 +91,4 @@ task.spawn(function()
 		end
 	end
 end)
-_G.mensaje = {
-	texto = "¡Bienvenido, Rubi!",
-	modo = "info"
-}
+
