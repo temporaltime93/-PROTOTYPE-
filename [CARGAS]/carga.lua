@@ -115,9 +115,10 @@ task.spawn(function()
     gui:Destroy()
 end)
 
-_G.mensaje = { modo = "info", texto = "GUI SE EJECUTO CORRECTAMENTE" }
+ _G.mensaje = { texto = "LOADER..", modo = "success" }
+wait(3)
+ _G.mensaje = { texto = "COMPLETO", modo = "success" }
 
-wait(11)
 
 --~ ╭────────────────────────────────────────────────────
 --~ │ 🌟      ¡HOLIII~! COMO ESTAS SOY RUBI~ 💖           
