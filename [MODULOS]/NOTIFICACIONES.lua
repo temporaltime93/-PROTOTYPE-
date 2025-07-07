@@ -13,8 +13,8 @@ local frame = gui:FindFirstChild("NotifFrame") or Instance.new("Frame")
 frame.Name = "NotifFrame"
 frame.Parent = gui
 frame.BackgroundTransparency = 1
-frame.Position = UDim2.new(1, -210, 1, -10) -- bottom right
-frame.Size = UDim2.new(0, 200, 1, 0)
+frame.Position = UDim2.new(1, -240, 1, -10) -- * margen derecho extendido
+frame.Size = UDim2.new(0, 230, 1, 0)
 frame.AnchorPoint = Vector2.new(1, 1)
 frame.ClipsDescendants = true
 
@@ -30,8 +30,8 @@ local modoColor = {
 -- * Mostrar notificación en pantalla
 local function mostrarNotificacion(modo: string, texto: string)
 	local msg = Instance.new("TextLabel")
-	msg.Size = UDim2.new(1, -10, 0, 30)
-	msg.Position = UDim2.new(0, 5, 1, 0)
+	msg.Size = UDim2.new(1, -20, 0, 30) -- * 10px de margen a cada lado
+	msg.Position = UDim2.new(0, 10, 1, 0) -- * aparece con margen izquierdo
 	msg.BackgroundColor3 = modoColor[modo] or modoColor.log
 	msg.BorderSizePixel = 0
 	msg.BackgroundTransparency = 0.1
@@ -39,20 +39,29 @@ local function mostrarNotificacion(modo: string, texto: string)
 	msg.TextColor3 = Color3.new(1, 1, 1)
 	msg.Font = Enum.Font.GothamBold
 	msg.TextSize = 14
-	msg.TextXAlignment = Enum.TextXAlignment.Center
+	msg.TextXAlignment = Enum.TextXAlignment.Left
 	msg.Parent = frame
 	msg.AnchorPoint = Vector2.new(0, 1)
 
+	-- * Bordes redondeados
 	local corner = Instance.new("UICorner", msg)
 	corner.CornerRadius = UDim.new(0, 6)
 
-	-- * Aparecer
+	-- * Padding interno al texto
+	local padding = Instance.new("UIPadding")
+	padding.Parent = msg
+	padding.PaddingLeft = UDim.new(0, 10)
+	padding.PaddingRight = UDim.new(0, 10)
+	padding.PaddingTop = UDim.new(0, 4)
+	padding.PaddingBottom = UDim.new(0, 4)
+
+	-- * Animación de aparición
 	local appear = TweenService:Create(msg, TweenInfo.new(0.4), {
-		Position = UDim2.new(0, 5, 1, -35),
+		Position = UDim2.new(0, 10, 1, -35),
 	})
 	appear:Play()
 
-	-- * Esperar y desaparecer
+	-- * Desaparecer luego de un tiempo
 	task.delay(3, function()
 		local disappear = TweenService:Create(msg, TweenInfo.new(0.5), {
 			TextTransparency = 1,
