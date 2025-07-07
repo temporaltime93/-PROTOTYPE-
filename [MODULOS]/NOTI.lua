@@ -135,12 +135,4 @@ task.spawn(function()
 		end
 	end
 end)
-_G.mensaje = {
-	texto = "🧪 Este texto ya no se saldrá del cuadro",
-	modo = "debug"
-}
-_G.mensaje = {
-	texto = "🧪 Este texto ya no se saldrá del cuadro",
-	modo = "debug"
-}
 
