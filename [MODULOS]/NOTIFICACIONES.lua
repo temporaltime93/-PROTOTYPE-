@@ -4,75 +4,134 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- * Crear GUI principal si no existe
+-- * GUI principal
 local gui = playerGui:FindFirstChild("NotifGui") or Instance.new("ScreenGui")
 gui.Name = "NotifGui"
 gui.ResetOnSpawn = false
-gui.IgnoreGuiInset = true -- * evita que se mueva con la barra superior
+gui.IgnoreGuiInset = true
 gui.Parent = playerGui
 
--- * Contenedor general de notificaciones
+-- * Contenedor de notificaciones
 local frame = gui:FindFirstChild("NotifFrame") or Instance.new("Frame")
 frame.Name = "NotifFrame"
 frame.Parent = gui
 frame.BackgroundTransparency = 1
 frame.Size = UDim2.new(0, 300, 1, 0)
 frame.AnchorPoint = Vector2.new(1, 1)
-frame.Position = UDim2.new(1, -10, 1, -30) -- * always bottom = 30, right = 10
+frame.Position = UDim2.new(1, -10, 1, -30)
 frame.ClipsDescendants = false
 
 -- * Colores por tipo
 local modoColor = {
-	info = Color3.fromRGB(85, 170, 255),     -- azul
-	warn = Color3.fromRGB(255, 204, 0),      -- amarillo
-	error = Color3.fromRGB(255, 80, 80),     -- rojo
-	help = Color3.fromRGB(180, 90, 255),     -- violeta
-	log = Color3.fromRGB(200, 200, 200),     -- gris
+	info = Color3.fromRGB(85, 170, 255),
+	warn = Color3.fromRGB(255, 204, 0),
+	error = Color3.fromRGB(255, 80, 80),
+	help = Color3.fromRGB(180, 90, 255),
+	log = Color3.fromRGB(200, 200, 200),
+	success = Color3.fromRGB(0, 200, 130),
+	debug = Color3.fromRGB(100, 100, 255),
+	system = Color3.fromRGB(100, 255, 255),
+	event = Color3.fromRGB(255, 128, 0),
+	custom = Color3.fromRGB(255, 255, 255),
 }
 
--- * Mostrar una notificación visual
+-- * Etiquetas como título
+local etiquetas = {
+	info = "✅ INFO",
+	warn = "⚠️ ADVERTENCIA",
+	error = "❌ ERROR",
+	help = "🔷 AYUDA",
+	log = "🔘 LOG",
+	success = "✅ ÉXITO",
+	debug = "🛠️ DEBUG",
+	system = "🖥️ SISTEMA",
+	event = "🎯 EVENTO",
+	custom = "✨ MENSAJE",
+}
+
+-- * Mostrar notificación compuesta
 local function mostrarNotificacion(modo: string, texto: string)
-	local msg = Instance.new("TextLabel")
-	msg.Size = UDim2.new(1, 0, 0, 40)
-	msg.Position = UDim2.new(0, 0, 1, 0) -- aparece justo debajo del frame
-	msg.BackgroundColor3 = modoColor[modo] or modoColor.log
-	msg.BorderSizePixel = 0
-	msg.BackgroundTransparency = 0.1
-	msg.Text = `[{modo:upper()}] {texto}`
-	msg.TextColor3 = Color3.new(1, 1, 1)
-	msg.Font = Enum.Font.GothamBold
-	msg.TextSize = 14
-	msg.TextXAlignment = Enum.TextXAlignment.Center
-	msg.AnchorPoint = Vector2.new(0, 1)
-	msg.Parent = frame
-	msg.ZIndex = 2
+	local color = modoColor[modo] or modoColor.log
+	local titulo = etiquetas[modo] or "🔘 MENSAJE"
 
-	-- * Padding interno
-	local padding = Instance.new("UIPadding", msg)
-	padding.PaddingLeft = UDim.new(0, 10)
-	padding.PaddingRight = UDim.new(0, 10)
-	padding.PaddingTop = UDim.new(0, 5)
-	padding.PaddingBottom = UDim.new(0, 5)
+	-- * Caja principal
+	local contenedor = Instance.new("Frame")
+	contenedor.Size = UDim2.new(1, 0, 0, 60)
+	contenedor.Position = UDim2.new(0, 0, 1, 0)
+	contenedor.BackgroundColor3 = color
+	contenedor.BackgroundTransparency = 0.1
+	contenedor.BorderSizePixel = 0
+	contenedor.AnchorPoint = Vector2.new(0, 1)
+	contenedor.Parent = frame
+	contenedor.ZIndex = 2
 
-	-- * Esquinas redondeadas
-	local corner = Instance.new("UICorner", msg)
+	local corner = Instance.new("UICorner", contenedor)
 	corner.CornerRadius = UDim.new(0, 6)
 
-	-- * Animación de aparición (sube 50 px)
-	local appear = TweenService:Create(msg, TweenInfo.new(0.3), {
-		Position = UDim2.new(0, 0, 1, -50),
+	local padding = Instance.new("UIPadding", contenedor)
+	padding.PaddingLeft = UDim.new(0, 10)
+	padding.PaddingRight = UDim.new(0, 10)
+	padding.PaddingTop = UDim.new(0, 6)
+	padding.PaddingBottom = UDim.new(0, 6)
+
+	-- * Título
+	local tituloLabel = Instance.new("TextLabel")
+	tituloLabel.Name = "Titulo"
+	tituloLabel.Size = UDim2.new(1, 0, 0, 16)
+	tituloLabel.Position = UDim2.new(0, 0, 0, 0)
+	tituloLabel.BackgroundTransparency = 1
+	tituloLabel.Text = titulo
+	tituloLabel.Font = Enum.Font.GothamBold
+	tituloLabel.TextSize = 13
+	tituloLabel.TextColor3 = Color3.new(1, 1, 1)
+	tituloLabel.TextXAlignment = Enum.TextXAlignment.Left
+	tituloLabel.Parent = contenedor
+
+	-- * Separador visual
+	local separador = Instance.new("Frame")
+	separador.Size = UDim2.new(1, 0, 0, 1)
+	separador.Position = UDim2.new(0, 0, 0, 20)
+	separador.BackgroundColor3 = Color3.new(1, 1, 1)
+	separador.BackgroundTransparency = 0.7
+	separador.BorderSizePixel = 0
+	separador.Parent = contenedor
+
+	-- * Contenido
+	local contenido = Instance.new("TextLabel")
+	contenido.Name = "Contenido"
+	contenido.Size = UDim2.new(1, 0, 0, 30)
+	contenido.Position = UDim2.new(0, 0, 0, 25)
+	contenido.BackgroundTransparency = 1
+	contenido.Text = texto
+	contenido.Font = Enum.Font.Gotham
+	contenido.TextSize = 14
+	contenido.TextWrapped = true
+	contenido.TextColor3 = Color3.new(1, 1, 1)
+	contenido.TextXAlignment = Enum.TextXAlignment.Left
+	contenido.TextYAlignment = Enum.TextYAlignment.Top
+	contenido.Parent = contenedor
+
+	-- * Animación de aparición
+	local appear = TweenService:Create(contenedor, TweenInfo.new(0.3), {
+		Position = UDim2.new(0, 0, 1, -70),
 	})
 	appear:Play()
 
-	-- * Esperar y luego desvanecer
+	-- * Auto destruir tras 3 segundos
 	task.delay(3, function()
-		local disappear = TweenService:Create(msg, TweenInfo.new(0.5), {
-			TextTransparency = 1,
+		local desaparecer = TweenService:Create(contenedor, TweenInfo.new(0.5), {
 			BackgroundTransparency = 1,
 		})
-		disappear:Play()
-		disappear.Completed:Wait()
-		msg:Destroy()
+		desaparecer:Play()
+		for _, hijo in ipairs(contenedor:GetChildren()) do
+			if hijo:IsA("TextLabel") then
+				TweenService:Create(hijo, TweenInfo.new(0.5), {
+					TextTransparency = 1
+				}):Play()
+			end
+		end
+		desaparecer.Completed:Wait()
+		contenedor:Destroy()
 	end)
 end
 
@@ -91,4 +150,3 @@ task.spawn(function()
 		end
 	end
 end)
-
