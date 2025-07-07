@@ -4,14 +4,14 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- * GUI principal
+-- * GUI base
 local gui = playerGui:FindFirstChild("NotifGui") or Instance.new("ScreenGui")
 gui.Name = "NotifGui"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
 gui.Parent = playerGui
 
--- * Contenedor de notificaciones
+-- * Contenedor
 local frame = gui:FindFirstChild("NotifFrame") or Instance.new("Frame")
 frame.Name = "NotifFrame"
 frame.Parent = gui
@@ -21,7 +21,7 @@ frame.AnchorPoint = Vector2.new(1, 1)
 frame.Position = UDim2.new(1, -10, 1, -30)
 frame.ClipsDescendants = false
 
--- * Colores por tipo
+-- * Colores y etiquetas
 local modoColor = {
 	info = Color3.fromRGB(85, 170, 255),
 	warn = Color3.fromRGB(255, 204, 0),
@@ -35,7 +35,6 @@ local modoColor = {
 	custom = Color3.fromRGB(255, 255, 255),
 }
 
--- * Etiquetas como título
 local etiquetas = {
 	info = "✅ INFO",
 	warn = "⚠️ ADVERTENCIA",
@@ -49,14 +48,14 @@ local etiquetas = {
 	custom = "✨ MENSAJE",
 }
 
--- * Mostrar notificación compuesta
+-- * Crear notificación
 local function mostrarNotificacion(modo: string, texto: string)
 	local color = modoColor[modo] or modoColor.log
 	local titulo = etiquetas[modo] or "🔘 MENSAJE"
 
-	-- * Caja principal
+	-- * Caja
 	local contenedor = Instance.new("Frame")
-	contenedor.Size = UDim2.new(1, 0, 0, 60)
+	contenedor.Size = UDim2.new(1, 0, 0, 65)
 	contenedor.Position = UDim2.new(0, 0, 1, 0)
 	contenedor.BackgroundColor3 = color
 	contenedor.BackgroundTransparency = 0.1
@@ -71,62 +70,51 @@ local function mostrarNotificacion(modo: string, texto: string)
 	local padding = Instance.new("UIPadding", contenedor)
 	padding.PaddingLeft = UDim.new(0, 10)
 	padding.PaddingRight = UDim.new(0, 10)
-	padding.PaddingTop = UDim.new(0, 6)
-	padding.PaddingBottom = UDim.new(0, 6)
+	padding.PaddingTop = UDim.new(0, 8)
+	padding.PaddingBottom = UDim.new(0, 8)
 
-	-- * Título
+	-- * Título centrado
 	local tituloLabel = Instance.new("TextLabel")
-	tituloLabel.Name = "Titulo"
-	tituloLabel.Size = UDim2.new(1, 0, 0, 16)
+	tituloLabel.Size = UDim2.new(1, 0, 0, 18)
 	tituloLabel.Position = UDim2.new(0, 0, 0, 0)
 	tituloLabel.BackgroundTransparency = 1
 	tituloLabel.Text = titulo
 	tituloLabel.Font = Enum.Font.GothamBold
-	tituloLabel.TextSize = 13
+	tituloLabel.TextSize = 14
 	tituloLabel.TextColor3 = Color3.new(1, 1, 1)
-	tituloLabel.TextXAlignment = Enum.TextXAlignment.Left
+	tituloLabel.TextXAlignment = Enum.TextXAlignment.Center
 	tituloLabel.Parent = contenedor
 
-	-- * Separador visual
-	local separador = Instance.new("Frame")
-	separador.Size = UDim2.new(1, 0, 0, 1)
-	separador.Position = UDim2.new(0, 0, 0, 20)
-	separador.BackgroundColor3 = Color3.new(1, 1, 1)
-	separador.BackgroundTransparency = 0.7
-	separador.BorderSizePixel = 0
-	separador.Parent = contenedor
-
-	-- * Contenido
+	-- * Texto contenido
 	local contenido = Instance.new("TextLabel")
-	contenido.Name = "Contenido"
 	contenido.Size = UDim2.new(1, 0, 0, 30)
-	contenido.Position = UDim2.new(0, 0, 0, 25)
+	contenido.Position = UDim2.new(0, 0, 0, 22)
 	contenido.BackgroundTransparency = 1
 	contenido.Text = texto
 	contenido.Font = Enum.Font.Gotham
-	contenido.TextSize = 14
+	contenido.TextSize = 13
 	contenido.TextWrapped = true
 	contenido.TextColor3 = Color3.new(1, 1, 1)
 	contenido.TextXAlignment = Enum.TextXAlignment.Left
 	contenido.TextYAlignment = Enum.TextYAlignment.Top
 	contenido.Parent = contenedor
 
-	-- * Animación de aparición
+	-- * Animar aparición
 	local appear = TweenService:Create(contenedor, TweenInfo.new(0.3), {
 		Position = UDim2.new(0, 0, 1, -70),
 	})
 	appear:Play()
 
-	-- * Auto destruir tras 3 segundos
+	-- * Ocultar después de 3s
 	task.delay(3, function()
-		local desaparecer = TweenService:Create(contenedor, TweenInfo.new(0.5), {
+		local desaparecer = TweenService:Create(contenedor, TweenInfo.new(0.4), {
 			BackgroundTransparency = 1,
 		})
 		desaparecer:Play()
-		for _, hijo in ipairs(contenedor:GetChildren()) do
+		for _, hijo in pairs(contenedor:GetChildren()) do
 			if hijo:IsA("TextLabel") then
-				TweenService:Create(hijo, TweenInfo.new(0.5), {
-					TextTransparency = 1
+				TweenService:Create(hijo, TweenInfo.new(0.4), {
+					TextTransparency = 1,
 				}):Play()
 			end
 		end
@@ -135,7 +123,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	end)
 end
 
--- * Sistema que escucha el mensaje global
+-- * Escuchar mensajes globales
 local ultimaReferencia = nil
 
 task.spawn(function()
@@ -143,9 +131,7 @@ task.spawn(function()
 		task.wait(0.1)
 		local mensaje = _G.mensaje
 		if mensaje and type(mensaje) == "table" and mensaje ~= ultimaReferencia then
-			local texto = mensaje.texto or "Sin texto"
-			local modo = mensaje.modo or "info"
-			mostrarNotificacion(modo, texto)
+			mostrarNotificacion(mensaje.modo or "info", mensaje.texto or "Sin texto")
 			ultimaReferencia = mensaje
 		end
 	end
