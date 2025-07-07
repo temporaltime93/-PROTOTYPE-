@@ -4,14 +4,14 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 
-local gui = playerGui:FindFirstChild("NotifGui_arc") or Instance.new("ScreenGui")
-gui.Name = "NotifGui_arc"
+local gui = playerGui:FindFirstChild("NotifGui") or Instance.new("ScreenGui")
+gui.Name = "NotifGui"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
 gui.Parent = playerGui
 
-local frame = gui:FindFirstChild("NotifFrame_arc") or Instance.new("Frame")
-frame.Name = "NotifFrame_arc"
+local frame = gui:FindFirstChild("NotifFrame") or Instance.new("Frame")
+frame.Name = "NotifFrame"
 frame.Parent = gui
 frame.BackgroundTransparency = 1
 frame.Size = UDim2.new(0, 300, 1, 0)
@@ -86,7 +86,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	-- * Contenido debajo del título
 	local contenido = Instance.new("TextLabel")
 	contenido.Size = UDim2.new(1, 0, 0, 40)
-	contenido.Position = UDim2.new(0, 0, 0, 25) -- * Bajo el título
+	contenido.Position = UDim2.new(0, 0, 0, 50) -- * Bajo el título
 	contenido.BackgroundTransparency = 1
 	contenido.Text = texto
 	contenido.Font = Enum.Font.Gotham
@@ -139,3 +139,4 @@ _G.mensaje = {
 	texto = "🧪 Este texto ya no se saldrá del cuadro",
 	modo = "debug"
 }
+
