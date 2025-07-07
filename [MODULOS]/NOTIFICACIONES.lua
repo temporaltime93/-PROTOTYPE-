@@ -4,20 +4,20 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 
-local gui = playerGui:FindFirstChild("NotifGui") or Instance.new("ScreenGui")
-gui.Name = "NotifGui"
+local gui = playerGui:FindFirstChild("NotifGui_arc") or Instance.new("ScreenGui")
+gui.Name = "NotifGui_arc"
 gui.ResetOnSpawn = false
 gui.IgnoreGuiInset = true
 gui.Parent = playerGui
 
-local frame = gui:FindFirstChild("NotifFrame") or Instance.new("Frame")
-frame.Name = "NotifFrame"
+local frame = gui:FindFirstChild("NotifFrame_arc") or Instance.new("Frame")
+frame.Name = "NotifFrame_arc"
 frame.Parent = gui
 frame.BackgroundTransparency = 1
 frame.Size = UDim2.new(0, 300, 1, 0)
 frame.AnchorPoint = Vector2.new(1, 1)
 frame.Position = UDim2.new(1, -10, 1, -30)
-frame.ClipsDescendants = false
+frame.ClipsDescendants = true -- * CLAVE: recorta lo que se escape
 
 local modoColor = {
 	info = Color3.fromRGB(85, 170, 255),
@@ -33,16 +33,16 @@ local modoColor = {
 }
 
 local etiquetas = {
-	info = "✅ INFO",
-	warn = "⚠️ ADVERTENCIA",
-	error = "❌ ERROR",
-	help = "🔷 AYUDA",
-	log = "🔘 LOG",
-	success = "✅ ÉXITO",
-	debug = "🛠️ DEBUG",
-	system = "🖥️ SISTEMA",
-	event = "🎯 EVENTO",
-	custom = "✨ MENSAJE",
+	info = "✅ INFO ✅",
+	warn = "⚠️ ADVERTENCIA ⚠️",
+	error = "❌ ERROR ❌",
+	help = "🔷 AYUDA 🔷",
+	log = "🔘 LOG 🔘",
+	success = "✅ ÉXITO ✅",
+	debug = "🛠️ DEBUG 🛠️",
+	system = "🖥️ SISTEMA 🖥️",
+	event = "🎯 EVENTO 🎯",
+	custom = "✨ MENSAJE ✨",
 }
 
 local function mostrarNotificacion(modo: string, texto: string)
@@ -51,12 +51,13 @@ local function mostrarNotificacion(modo: string, texto: string)
 
 	-- * Caja contenedora
 	local contenedor = Instance.new("Frame")
-	contenedor.Size = UDim2.new(1, 0, 0, 70)
+	contenedor.Size = UDim2.new(1, 0, 0, 85) -- * MÁS ALTO PARA QUE TODO QUEPA
 	contenedor.Position = UDim2.new(0, 0, 1, 0)
 	contenedor.BackgroundColor3 = color
 	contenedor.BackgroundTransparency = 0.1
 	contenedor.BorderSizePixel = 0
 	contenedor.AnchorPoint = Vector2.new(0, 1)
+	contenedor.ClipsDescendants = true
 	contenedor.Parent = frame
 	contenedor.ZIndex = 2
 
@@ -71,7 +72,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 
 	-- * Título centrado
 	local tituloLabel = Instance.new("TextLabel")
-	tituloLabel.Size = UDim2.new(1, 0, 0, 18)
+	tituloLabel.Size = UDim2.new(1, 0, 0, 20)
 	tituloLabel.Position = UDim2.new(0, 0, 0, 0)
 	tituloLabel.BackgroundTransparency = 1
 	tituloLabel.Text = titulo
@@ -82,16 +83,16 @@ local function mostrarNotificacion(modo: string, texto: string)
 	tituloLabel.TextXAlignment = Enum.TextXAlignment.Center
 	tituloLabel.Parent = contenedor
 
-	-- * Contenido
+	-- * Contenido debajo del título
 	local contenido = Instance.new("TextLabel")
-	contenido.Size = UDim2.new(1, 0, 0, 30)
-	contenido.Position = UDim2.new(0, 0, 0, 22) -- ! Ajustado: antes 25 o 30, ahora correcto
+	contenido.Size = UDim2.new(1, 0, 0, 40)
+	contenido.Position = UDim2.new(0, 0, 0, 25) -- * Bajo el título
 	contenido.BackgroundTransparency = 1
 	contenido.Text = texto
 	contenido.Font = Enum.Font.Gotham
 	contenido.TextSize = 13
-	contenido.ZIndex = 10
 	contenido.TextWrapped = true
+	contenido.ZIndex = 10
 	contenido.TextColor3 = Color3.new(1, 1, 1)
 	contenido.TextXAlignment = Enum.TextXAlignment.Left
 	contenido.TextYAlignment = Enum.TextYAlignment.Top
@@ -99,11 +100,11 @@ local function mostrarNotificacion(modo: string, texto: string)
 
 	-- * Animar aparición
 	local appear = TweenService:Create(contenedor, TweenInfo.new(0.3), {
-		Position = UDim2.new(0, 0, 1, -80),
+		Position = UDim2.new(0, 0, 1, -95),
 	})
 	appear:Play()
 
-	-- * Auto eliminar después de 3 segundos
+	-- * Auto eliminar
 	task.delay(3, function()
 		local desaparecer = TweenService:Create(contenedor, TweenInfo.new(0.4), {
 			BackgroundTransparency = 1,
@@ -121,6 +122,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	end)
 end
 
+-- * Escuchar global
 local ultimaReferencia = nil
 
 task.spawn(function()
@@ -133,5 +135,7 @@ task.spawn(function()
 		end
 	end
 end)
-
-
+_G.mensaje = {
+	texto = "🧪 Este texto ya no se saldrá del cuadro",
+	modo = "debug"
+}
