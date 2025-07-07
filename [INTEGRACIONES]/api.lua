@@ -1,18 +1,6 @@
--- * Datos base
-_G.User_ID = "922173773631877150"
-_G.MARCA_DEL_JUEGO = "DEAD_RIELS"
-_G.Bond = 20
-_G.Otro = "ACTIVADO"
-_G.Puntos = 500
-_G.Estado = "VIVO"
 
--- * Tabla de datos a exportar
-_G.enviar = {
-  ["BONOS: "]  = tostring(_G.Bond),
-  ["OTRO: "]   = tostring(_G.Otro),
-  ["PUNTOS: "] = tostring(_G.Puntos),
-  ["ESTADO: "] = tostring(_G.Estado),
-}
+
+
 
 -- * Conversión de _G.enviar a texto multilínea formateado
 local resultado = ""
