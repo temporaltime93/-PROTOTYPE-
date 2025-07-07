@@ -16,7 +16,7 @@
 --> MENSAJES 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/temporaltime93/-PROTOTYPE-/main/[MODULOS]/mensajes.lua"))()
 ---> 📋 Constantes y variables globales
-local DISCORD = "https://discord.gg/ammCKeyNcX"
+local DISCORD = "https://discord.gg/2qcRceCmtC"
 
 ---> 🧑‍💻 Jugador local y creación de la GUI
 local player = game.Players.LocalPlayer
