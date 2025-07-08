@@ -45,7 +45,7 @@ local etiquetas = {
 	custom = "✨ MENSAJE ✨",
 }
 
-local function mostrarNotificacion(modo: string, texto: string)
+local function mostrarNotificacion(M: string, T: string)
 	local color = modoColor[modo] or modoColor.log
 	local titulo = etiquetas[modo] or "🔘 MENSAJE"
 
