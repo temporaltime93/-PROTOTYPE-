@@ -50,7 +50,7 @@ local function mostrarNotificacion(modo: string, texto: string)
 	local TEXTO_NOTI = Instance.new("TextBox")
 	TEXTO_NOTI.Name = "TEXTO_NOTI"
 	TEXTO_NOTI.Text = texto
-	TEXTO_NOTI.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Regular, Enum.FontStyle.Normal)
+	TEXTO_NOTI.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json", Enum.FontWeight.Bold, Enum.FontStyle.Normal)
 	TEXTO_NOTI.TextColor3 = coloresTexto[modo] or Color3.fromRGB(255, 255, 255)
 	TEXTO_NOTI.TextSize = 25
 	TEXTO_NOTI.TextXAlignment = Enum.TextXAlignment.Left
