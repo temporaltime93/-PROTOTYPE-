@@ -136,3 +136,8 @@ task.spawn(function()
 	end
 end)
 
+_G.mensaje = {
+    M = "success", -- o "warn", "error", etc.
+    T = "NOTI CARGO CORRECTAMENTE"
+}
+
