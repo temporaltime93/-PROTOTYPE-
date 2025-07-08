@@ -130,7 +130,7 @@ task.spawn(function()
 		task.wait(0.1)
 		local mensaje = _G.mensaje
 		if mensaje and type(mensaje) == "table" and mensaje ~= ultimaReferencia then
-			mostrarNotificacion(mensaje.modo or "info", mensaje.texto or "Sin texto")
+			mostrarNotificacion(mensaje.M or "info", mensaje.T or "Sin texto")
 			ultimaReferencia = mensaje
 		end
 	end
