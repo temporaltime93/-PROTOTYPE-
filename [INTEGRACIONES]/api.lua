@@ -1,7 +1,10 @@
-
-
-
-
+--_G.MARCA_DEL_JUEGO = "DEAD_RIELS"
+--_G.User_ID = "1383328246216527932"
+--local bonos = tostring(_G.Bond or "0")
+--_G.enviar = {
+--	["BONOS: "]  = bonos,
+--	["VERSION: "] = "v1",
+--}
 -- * Conversión de _G.enviar a texto multilínea formateado
 local resultado = ""
 
@@ -29,15 +32,16 @@ local info_encoded = "&OIHDoihio=" .. info:gsub(" ", "%%20"):gsub("\n", "%%0A")
 -- * Construir endpoint final
 local endpoint = "https://botdiscord-production-204e.up.railway.app/enviar?" .. p1 .. p2 .. p3 .. info_encoded
 
--- * Envío del mensaje
-local success, response = pcall(function()
-  return game:HttpGet(endpoint)
-end)
 
--- * Confirmación
-if success then
-  print("✅ Mensaje enviado correctamente.")
-  print("📨 Respuesta:", response)
-else
-  warn("❌ Falló el envío:", response)
-end
+
+local success, response = pcall(function()
+   return game:HttpGet(endpoint)
+ end)
+
+-- -- * Confirmación
+-- if success then
+--   print("✅ Mensaje enviado correctamente.")
+--   print("📨 Respuesta:", response)
+-- else
+--   warn("❌ Falló el envío:", response)
+-- end
